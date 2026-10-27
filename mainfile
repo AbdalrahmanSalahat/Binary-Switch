@@ -1,0 +1,141 @@
+
+
+let input_1 = document.getElementById("input_1");
+let input_2 = document.getElementById("input_2");
+let dropdown = document.getElementById("dropdown");
+let dropdown2 = document.getElementById("dropdown2");
+
+
+
+function DecimalToBinary(dec){
+return (dec>>>0).toString(2)
+}
+function DecimalToOctal(dec){
+    return(dec>>>0).toString(8)
+}
+function DecimalToHexadecimal(dec){
+    return(dec>>>0).toString(16)
+}
+
+function BinaryToDecimal(binary){
+    return parseInt(binary,2)
+}
+
+function BinaryToHexadecimal(binary){
+    
+    
+ return DecimalToHexadecimal(BinaryToDecimal(binary))
+}
+function BinaryToOctal(binary){
+    
+    
+    return DecimalToOctal(BinaryToDecimal(binary))
+   }
+
+function OctalToDecimal(Octal){
+return parseInt(Octal,8)
+}
+
+
+
+function HexadecimalToDecimal(Hex){
+    return parseInt(Hex,16)
+    }
+
+
+
+
+
+
+input_1.addEventListener("keyup",function(){
+
+let selectedvalue=dropdown.value;
+let selectedvalue2=dropdown2.value;
+if(selectedvalue=="Binary"){
+    input_1.style.backgroundColor="white"
+    if(/^[01]*$/.test(input_1.value))
+        
+        {
+
+    switch(selectedvalue2){
+       
+        case "Octal":
+            input_2.value=BinaryToOctal(input_1.value)
+            console.log(BinaryToDecimal(input_1.value));
+        break;
+        case "Decimal":
+        input_2.value=BinaryToDecimal(input_1.value);
+        console.log(BinaryToDecimal(input_1.value));
+
+        break;
+        case "Hexadecimal":
+            input_2.value=BinaryToHexadecimal(input_1.value)
+            console.log(BinaryToDecimal(input_1.value));
+        break;
+        default:break;
+        
+    }
+}
+    else{input_1.style.backgroundColor="#c62300";
+
+
+        input_2.value="NAN";
+    }
+
+
+}
+else if(selectedvalue=="Octal"){
+    switch(selectedvalue2){
+        case "Binary":
+        
+      input_2.value= DecimalToBinary(OctalToDecimal(input_1.value))
+      break;
+        case "Decimal":
+            input_2.value=OctalToDecimal(input_1.value);
+            console.log(OctalToDecimal(input_1.value))
+        break;
+        case "Hexadecimal":
+         input_2.value=   DecimalToHexadecimal(OctalToDecimal(input_1.value))
+        break;
+        default:break;
+    }
+
+}
+else if(selectedvalue=="Decimal"){
+    switch(selectedvalue2){
+        case "Binary":
+            input_2.value=(DecimalToBinary(input_1.value))
+            break;
+            case "Octal":
+                input_2.value=(DecimalToOctal(input_1.value))
+            break;
+           
+            case "Hexadecimal":
+                input_2.value=(DecimalToHexadecimal(input_1.value))
+            break;
+            default:break;
+        
+    }
+
+}
+else if(selectedvalue=="Hexadecimal"){
+    switch(selectedvalue2){
+        case "Binary":
+         input_2.value=  DecimalToBinary(HexadecimalToDecimal(input_1.value))
+            break;
+            case "Octal":
+           input_2.value=    DecimalToOctal(HexadecimalToDecimal(input_1.value))
+            break;
+            case "Decimal":
+                input_2.value=HexadecimalToDecimal(input_1.value)
+            break;
+         
+            default:break;
+        
+        
+    }
+
+}
+
+
+});
